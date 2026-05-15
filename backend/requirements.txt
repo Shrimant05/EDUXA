@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+motor
+pydantic
+email-validator
+langchain
+langchain-ollama
+langchain-chroma
+chromadb
+langchain-text-splitters
+python-multipart
+python-dotenv
+pypdf
+python-docx

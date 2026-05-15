@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - mongodb
+      - ollama
+    volumes:
+      - ./vector_db:/app/vector_db
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  ollama-pull:
+    image: curlimages/curl:latest
+    depends_on:
+      - ollama
+    entrypoint: [ "sh", "-c", "sleep 5 && curl -X POST http://ollama:11434/api/pull -d '{\"name\": \"llama3\"}' && curl -X POST http://ollama:11434/api/pull -d '{\"name\": \"nomic-embed-text\"}'" ]
+
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./vector_db:/chroma/chroma
+
+volumes:
+  mongo_data:
+  ollama_data:
