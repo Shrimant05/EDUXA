@@ -1,0 +1,57 @@
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.python-version
+pip-wheel-metadata/
+*.egg-info/
+build/
+dist/
+
+# dotenv
+.env
+.env.*
+backend/.env
+
+# Databases
+*.sqlite3
+*.sqlite
+*.db
+backend/vector_db/
+backend/vector_db/chroma.sqlite3
+
+# Uploads and user data
+backend/uploads/
+uploads/
+
+# Bytecode
+*.pyc
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# OS files
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Docker overrides (local)
+docker-compose.override.yml
